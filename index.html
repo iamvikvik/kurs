@@ -4,93 +4,99 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>Курс валют</title>
-<meta name="theme-color" content="#f6c6e8">
+<meta name="theme-color" content="#232323">
+<meta name="color-scheme" content="dark">
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-title" content="Курс">
-<meta name="apple-mobile-web-app-status-bar-style" content="default">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
 <link rel="manifest" href="kurs.webmanifest">
 <link rel="apple-touch-icon" href="kurs-icon-180.png">
 <link rel="icon" href="kurs-icon-192.png">
 <style>
-:root{--pink:#f6c6e8;--lime:#ecff6c;--ink:#161616;--dark:#222222;--line:rgba(22,22,22,.18);
-  --font:-apple-system,BlinkMacSystemFont,"SF Pro Display","Segoe UI",Roboto,Helvetica,Arial,sans-serif}
+:root{--bg:#171717;--card:#212121;--pink:#f8a8d4;--pink2:#ffd0ea;--tx:#fff;--mut:#9b9b9b;
+  --font:-apple-system,BlinkMacSystemFont,"SF Pro Display","Inter","Segoe UI",Roboto,Helvetica,Arial,sans-serif}
 *{box-sizing:border-box;-webkit-tap-highlight-color:transparent}
-html{-webkit-text-size-adjust:100%}
-body{margin:0;background:var(--pink);color:var(--ink);font-family:var(--font)}
+html{-webkit-text-size-adjust:100%;background:var(--bg)}
+body{margin:0;background:var(--bg);color:var(--tx);font-family:var(--font)}
 button{font:inherit;color:inherit;background:none;border:0;cursor:pointer;padding:0}
-.slide{max-width:520px;margin:0 auto;min-height:100vh;min-height:100dvh;display:flex;flex-direction:column;padding:calc(10px + env(safe-area-inset-top)) 14px 0}
-.top{display:flex;justify-content:space-between;align-items:center;padding:6px 4px 12px}
-.top h1{margin:0;font-size:28px;font-weight:800;letter-spacing:-.02em;line-height:1.1}
-.top h1 span{background:var(--lime);padding:0 8px;border-radius:8px;-webkit-box-decoration-break:clone;box-decoration-break:clone}
-.datechip{font-size:13px;font-weight:600;background:rgba(255,255,255,.55);border-radius:999px;padding:6px 11px}
+.app{max-width:520px;margin:0 auto;min-height:100vh;min-height:100dvh;display:flex;flex-direction:column;background:var(--bg)}
 
-.dark{background:var(--dark);color:var(--lime);border-radius:22px;padding:13px 14px 14px}
-.cap{display:flex;justify-content:space-between;font-size:13px;color:#cfcfcf;font-weight:500}
-.cap b{color:var(--lime);font-weight:700}
-.amtline{display:flex;align-items:center;gap:10px;margin:4px 0 10px}
-#amt{flex:1;min-width:0;width:100%;background:none;border:0;outline:0;color:var(--lime);font-family:var(--font);font-weight:700;font-size:clamp(34px,11vw,46px);line-height:1.15;letter-spacing:-.02em;font-variant-numeric:tabular-nums;padding:0;caret-color:var(--lime)}
-#amt::placeholder{color:rgba(236,255,108,.35)}
-.curtag{font-weight:800;font-size:15px;color:var(--ink);background:var(--lime);padding:4px 10px;border-radius:10px}
-.chips{display:flex;gap:6px}
-.chip{flex:1;border:1.5px solid rgba(236,255,108,.45);color:var(--lime);padding:8px 0;font-size:13px;font-weight:700;border-radius:12px;text-align:center}
-.chip.on{background:var(--lime);color:var(--ink);border-color:var(--lime)}
+.hero{position:relative;background:linear-gradient(#242424,#171717);padding-top:env(safe-area-inset-top)}
+.hero img{display:block;width:100%;height:auto;-webkit-mask-image:linear-gradient(#000 88%,transparent);mask-image:linear-gradient(#000 88%,transparent)}
+.datechip{position:absolute;left:4.2%;top:calc(env(safe-area-inset-top) + 74%);display:flex;align-items:center;gap:10px;font-size:15px;font-weight:500;color:#eee;background:rgba(255,255,255,.09);border:1px solid rgba(255,255,255,.07);backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px);border-radius:999px;padding:9px 14px}
+.datechip svg{width:19px;height:19px;stroke:#f3a9d2;fill:none;stroke-width:2;stroke-linecap:round;stroke-linejoin:round}
 
-.list{margin-top:12px;display:grid;gap:8px}
-.row{min-width:0;display:flex;align-items:center;gap:12px;width:100%;text-align:left;background:rgba(255,255,255,.62);border-radius:20px;padding:10px 14px 10px 10px}
-.row:active{background:rgba(255,255,255,.85)}
-.flag{flex:none;width:44px;height:44px;border-radius:50%;background:#fff;display:grid;place-items:center;font-size:26px;line-height:1;box-shadow:0 2px 6px rgba(22,22,22,.12)}
+.wrap{padding:0 14px;display:flex;flex-direction:column;flex:1;margin-top:-6px}
+.inp{background:linear-gradient(180deg,#2a2a2a,#1e1e1e);border:1px solid rgba(255,255,255,.06);border-radius:26px;padding:13px 16px 14px;box-shadow:0 8px 24px rgba(0,0,0,.35)}
+.cap{display:flex;justify-content:space-between;font-size:13px;color:var(--mut)}
+.cap b{color:var(--pink);font-weight:600}
+.amtline{display:flex;align-items:center;gap:10px;margin:2px 0 10px}
+#amt{flex:1;min-width:0;width:100%;background:none;border:0;outline:0;color:#fff;font-family:var(--font);font-weight:600;font-size:clamp(34px,11vw,44px);line-height:1.15;letter-spacing:-.02em;font-variant-numeric:tabular-nums;padding:0;caret-color:var(--pink)}
+#amt::placeholder{color:rgba(255,255,255,.25)}
+.curtag{font-weight:700;font-size:15px;color:#3a1830;background:linear-gradient(180deg,var(--pink2),var(--pink));padding:5px 12px;border-radius:999px}
+.chips{display:flex;gap:5px}
+.chip{flex:1;border:1px solid rgba(255,255,255,.12);color:#cfcfcf;padding:8px 0;font-size:12px;font-weight:600;border-radius:12px;text-align:center}
+.chip.on{background:linear-gradient(180deg,var(--pink2),var(--pink));color:#3a1830;border-color:transparent}
+
+.list{margin-top:12px;display:grid;gap:10px}
+.row{min-width:0;display:flex;align-items:center;gap:14px;width:100%;text-align:left;background:linear-gradient(180deg,#262626,#1e1e1e);border:1px solid rgba(255,255,255,.05);border-radius:28px;padding:11px 20px 11px 12px;box-shadow:0 6px 16px rgba(0,0,0,.3)}
+.row:active{background:#2c2c2c}
+.flag{flex:none;width:46px;height:46px;border-radius:50%;box-shadow:0 3px 8px rgba(0,0,0,.5)}
 .nm{flex:none;display:flex;flex-direction:column;min-width:0}
-.nm b{font-size:18px;font-weight:800;letter-spacing:-.01em}
-.nm small{font-size:12px;color:#5b4a56;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;max-width:104px}
-@media(max-width:360px){.nm small{max-width:70px}.flag{width:38px;height:38px;font-size:22px}}
+.nm b{font-size:21px;font-weight:700;letter-spacing:-.01em}
+.nm small{font-size:14px;color:var(--mut);white-space:nowrap;overflow:hidden;text-overflow:ellipsis;max-width:116px}
+@media(max-width:370px){.nm small{max-width:80px}.nm b{font-size:19px}}
 .val{flex:1;min-width:0;text-align:right;display:flex;flex-direction:column;align-items:flex-end}
-.val b{font-size:clamp(20px,6.4vw,26px);font-weight:700;letter-spacing:-.02em;font-variant-numeric:tabular-nums;line-height:1.15;overflow-wrap:anywhere}
-.val small{font-size:12px;color:#5b4a56;margin-top:1px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;max-width:100%}
+.val b{font-size:clamp(21px,7vw,29px);font-weight:600;letter-spacing:-.01em;font-variant-numeric:tabular-nums;line-height:1.15;overflow-wrap:anywhere}
+.val small{font-size:11.5px;color:#7d7d7d;margin-top:1px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;max-width:100%}
 
-.hint{margin:10px 6px 0;font-size:12px;line-height:1.45;color:#5b4a56}
-.strip{margin-top:auto;padding:12px 4px calc(12px + env(safe-area-inset-bottom));display:flex;align-items:center;justify-content:space-between;font-size:13px;font-weight:600}
-.strip .upd{display:flex;align-items:center;gap:8px;background:var(--lime);border-radius:999px;padding:9px 14px;font-weight:700}
-.strip svg{width:17px;height:17px;stroke:var(--ink);fill:none;stroke-width:2.2;stroke-linecap:round;stroke-linejoin:round}
+.hint{margin:12px 8px 0;font-size:12px;line-height:1.45;color:#7d7d7d}
+.strip{margin-top:auto;padding:18px 6px calc(18px + env(safe-area-inset-bottom))}
+.upd{width:100%;height:64px;display:flex;align-items:center;justify-content:center;gap:14px;border-radius:999px;font-size:21px;font-weight:600;color:#2a1022;background:linear-gradient(180deg,#ffd6ee 0%,#fbb2da 55%,#f598c9 100%);box-shadow:inset 0 2px 0 rgba(255,255,255,.7),inset 0 -4px 10px rgba(214,90,160,.45),0 8px 22px rgba(0,0,0,.55)}
+.upd:active{transform:scale(.985)}
+.upd svg{width:28px;height:28px;stroke:#2a1022;fill:none;stroke-width:2.2;stroke-linecap:round;stroke-linejoin:round}
 .upd.spin svg{animation:sp 1s linear infinite}
 @keyframes sp{to{transform:rotate(360deg)}}
-.toast{position:fixed;left:50%;bottom:calc(76px + env(safe-area-inset-bottom));transform:translate(-50%,10px);background:var(--ink);color:var(--lime);padding:10px 16px;border-radius:999px;font-size:13px;font-weight:600;opacity:0;pointer-events:none;transition:.25s;z-index:5;max-width:90vw;text-align:center}
+.toast{position:fixed;left:50%;bottom:calc(100px + env(safe-area-inset-bottom));transform:translate(-50%,10px);background:#2c2c2c;color:#fff;border:1px solid rgba(255,255,255,.1);padding:10px 16px;border-radius:999px;font-size:13px;font-weight:600;opacity:0;pointer-events:none;transition:.25s;z-index:5;max-width:90vw;text-align:center}
 .toast.on{opacity:1;transform:translate(-50%,0)}
 </style>
 </head>
 <body>
-<div class="slide">
-  <div class="top"><h1><span>Курс валют</span></h1><span class="datechip" id="rdate">—</span></div>
-
-  <section class="dark">
-    <div class="cap"><span>Ты вводишь</span><b id="basename">Российский рубль</b></div>
-    <div class="amtline"><input id="amt" inputmode="decimal" autocomplete="off" placeholder="0" aria-label="Сумма"><span class="curtag" id="curtag">RUB</span></div>
-    <div class="chips" id="chips"></div>
-  </section>
-
-  <section class="list" id="list" aria-live="polite"></section>
-  <p class="hint" id="hint">Нажми на строку, чтобы считать от этой валюты.</p>
-  <p class="hint" id="note"></p>
-
-  <footer class="strip">
-    <span id="stripdate">Курс на —</span>
-    <button class="upd" id="refresh" aria-label="Обновить курс"><svg viewBox="0 0 24 24"><path d="M20 12a8 8 0 1 1-2.6-5.9"/><path d="M20 4v5h-5"/></svg>Обновить</button>
-  </footer>
+<div class="app">
+  <header class="hero">
+    <img src="banner.jpg" alt="Курс валют" width="949" height="548">
+    <span class="datechip"><span id="rdate">—</span><svg viewBox="0 0 24 24"><rect x="3.5" y="5" width="17" height="15.5" rx="3"/><path d="M3.5 10h17M8 3v4M16 3v4"/></svg></span>
+  </header>
+  <main class="wrap">
+    <section class="inp">
+      <div class="cap"><span>Ты вводишь</span><b id="basename">Российский рубль</b></div>
+      <div class="amtline"><input id="amt" inputmode="decimal" autocomplete="off" placeholder="0" aria-label="Сумма"><span class="curtag" id="curtag">RUB</span></div>
+      <div class="chips" id="chips"></div>
+    </section>
+    <section class="list" id="list" aria-live="polite"></section>
+    <p class="hint" id="hint">Нажми на строку, чтобы считать от этой валюты.</p>
+    <p class="hint" id="note"></p>
+    <footer class="strip">
+      <button class="upd" id="refresh" aria-label="Обновить курс"><svg viewBox="0 0 24 24"><path d="M20 12a8 8 0 1 1-2.6-5.9"/><path d="M20 4v5h-5"/></svg>Обновить</button>
+    </footer>
+  </main>
 </div>
 <div class="toast" id="toast" role="status"></div>
 <script>
 (function(){
 'use strict';
 const CUR = [
-  {c:'RUB', n:'Российский рубль', f:'🇷🇺'},
-  {c:'USD', n:'Доллар США', f:'🇺🇸'},
-  {c:'EUR', n:'Евро', f:'🇪🇺'},
-  {c:'AED', n:'Дирхам ОАЭ', f:'🇦🇪'},
-  {c:'AMD', n:'Армянский драм', f:'🇦🇲'},
-  {c:'TRY', n:'Турецкая лира', f:'🇹🇷'}
+  {c:'RUB', n:'Российский рубль'},
+  {c:'GBP', n:'Фунт стерлингов'},
+  {c:'USD', n:'Доллар США'},
+  {c:'EUR', n:'Евро'},
+  {c:'AED', n:'Дирхам ОАЭ'},
+  {c:'AMD', n:'Армянский драм'},
+  {c:'TRY', n:'Турецкая лира'}
 ];
 // запасной курс, если нет интернета и ещё ничего не сохранялось (курс на 10.10.2026, 1 USD = ...)
-const FALLBACK = { date:'2026-10-10', rates:{USD:1, RUB:84.989692, EUR:0.892383, AED:3.6725, AMD:361.957381, TRY:49.339277}, approx:true };
+const FALLBACK = { date:'2026-10-10', rates:{USD:1, RUB:84.989692, GBP:0.77, EUR:0.892383, AED:3.6725, AMD:361.957381, TRY:49.339277}, approx:true };
 const KEY='kurs_v1', RKEY='kurs_rates_v1', MAXAGE=3*3600*1000;
 const $=s=>document.querySelector(s);
 const esc=s=>String(s).replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
@@ -122,10 +128,10 @@ function render(keepInput){
   $('#chips').innerHTML=CUR.map(x=>'<button class="chip'+(x.c===st.base?' on':'')+'" data-base="'+x.c+'">'+x.c+'</button>').join('');
   const v=parseAmt(st.amt);
   $('#list').innerHTML=CUR.filter(x=>x.c!==st.base).map(x=>
-    '<button class="row" data-pick="'+x.c+'"><span class="flag">'+x.f+'</span><span class="nm"><b>'+x.c+'</b><small>'+esc(x.n)+'</small></span>'+
+    '<button class="row" data-pick="'+x.c+'"><img class="flag" src="flag-'+x.c+'.png" alt="" width="46" height="46"><span class="nm"><b>'+x.c+'</b><small>'+esc(x.n)+'</small></span>'+
     '<span class="val"><b>'+esc(fmt(convert(v,st.base,x.c)))+'</b><small>'+esc(rateTxt(st.base,x.c))+'</small></span></button>').join('');
   const d=dstr(rates.date);
-  $('#rdate').textContent=d; $('#stripdate').textContent='Курс на '+d;
+  $('#rdate').textContent=d;
   $('#note').textContent=(rates.approx?'Примерный курс на '+d+': не удалось загрузить свежий. ':'')+'Курс ориентировочный (рыночный): в банках и обменниках он обычно немного отличается.';
 }
 
